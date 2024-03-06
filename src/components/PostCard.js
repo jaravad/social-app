@@ -19,7 +19,7 @@ export default function MediaCard({ text, image }) {
       </CardContent>
       <CardActions>
         {/* <Button size="small">Share</Button> */}
-        <Button size="small">Learn More</Button>
+        <Button size="small">Ir al post</Button>
       </CardActions>
     </Card>
   );
