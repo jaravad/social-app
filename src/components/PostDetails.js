@@ -9,7 +9,7 @@ import {
   Container,
   Typography,
 } from '@mui/material';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 const parseDate = (dateString) => {
@@ -29,6 +29,7 @@ const PostDetails = () => {
   const [loading, setLoading] = useState(false);
   const [postData, setPostData] = useState(null);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -88,16 +89,16 @@ const PostDetails = () => {
             alt={postData.text}
           />
           <CardContent>
-            {/* <Typography variant="h5" component="div">
-          {name}
-        </Typography> */}
             <Box mb={0.5}>
               {postData?.tags?.map((tag) => (
                 <Chip
+                  onClick={() => {
+                    navigate(`/posts?tag=${tag}`);
+                  }}
                   size="small"
                   label={tag}
                   key={tag}
-                  sx={{ m: 0.25 }}
+                  sx={{ m: 0.25, cursor: 'pointer' }}
                   variant="outlined"
                   color="primary"
                 />

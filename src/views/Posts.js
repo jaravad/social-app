@@ -69,7 +69,7 @@ const Posts = () => {
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
           <CircularProgress />
         </Box>
-      ) : posts.length > 0 ? (
+      ) : posts?.length > 0 ? (
         <>
           <Box mb={2}>
             <Typography mb={1} paragraph variant="body2">
