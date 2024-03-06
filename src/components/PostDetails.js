@@ -4,7 +4,6 @@ import {
   Card,
   CardContent,
   CardHeader,
-  CardMedia,
   Chip,
   CircularProgress,
   Container,
@@ -28,8 +27,8 @@ const parseDate = (dateString) => {
 
 const PostDetails = () => {
   const [loading, setLoading] = useState(false);
-  const { id } = useParams();
   const [postData, setPostData] = useState(null);
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,7 +38,6 @@ const PostDetails = () => {
           headers: { 'app-id': process.env.REACT_APP_APP_ID },
         });
         const parsedData = await data.json();
-        console.log(parsedData);
         setPostData(parsedData);
         setLoading(false);
       } catch (e) {
@@ -65,21 +63,36 @@ const PostDetails = () => {
         </Box>
       )}
       {postData && !loading && (
-        <Card elevation={3}>
-          <CardHeader
-            avatar={
-              <Avatar alt={postData.owner.name} src={postData.owner.picture} />
-            }
-            title={`${postData.owner.firstName} ${postData.owner.lastName}`}
-            subheader={parseDate(postData.publishDate)}
+        <Card
+          elevation={3}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          {postData.owner && (
+            <CardHeader
+              avatar={
+                <Avatar
+                  alt={postData?.owner?.name}
+                  src={postData?.owner?.picture}
+                />
+              }
+              title={`${postData?.owner?.firstName} ${postData?.owner?.lastName}`}
+              subheader={parseDate(postData?.publishDate)}
+            />
+          )}
+          <img
+            style={{ width: '100%', maxWidth: '100%', alignSelf: 'center' }}
+            src={postData.image}
+            alt={postData.text}
           />
-          <CardMedia sx={{ height: 200 }} image={postData.image} title="" />
           <CardContent>
             {/* <Typography variant="h5" component="div">
           {name}
         </Typography> */}
             <Box mb={0.5}>
-              {postData?.tags.map((tag) => (
+              {postData?.tags?.map((tag) => (
                 <Chip
                   size="small"
                   label={tag}

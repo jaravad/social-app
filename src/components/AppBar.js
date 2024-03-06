@@ -10,8 +10,21 @@ export default function ButtonAppBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Toolbar
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ cursor: 'pointer' }}
+            onClick={() => {
+              navigate('/');
+            }}
+          >
             Dummy App
           </Typography>
           <Button
