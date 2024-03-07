@@ -40,7 +40,7 @@ export default function ButtonAppBar() {
               navigate('/');
             }}
           >
-            Dummy App
+            Social App
           </Typography>
           <Box>
             {isAuthenticated && (
